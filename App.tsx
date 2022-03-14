@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { KeyboardAvoidingView, Platform, StatusBar, View } from 'react-native';
+import { useTheme } from 'styled-components';
+import Header from './src/components/Header';
+import AppProvider from './src/hooks';
+import { Routes } from './src/routes';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    const theme = useTheme();
+    return (
+        <AppProvider>
+            <StatusBar backgroundColor={'#040404'} ></StatusBar>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                style={{
+                    flex: 1,
+                }}
+            >
+                <Header />
+                <NavigationContainer>
+                    <Routes />
+                </NavigationContainer>
+            </KeyboardAvoidingView>
+        </AppProvider>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
