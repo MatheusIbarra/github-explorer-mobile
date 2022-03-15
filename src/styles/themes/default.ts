@@ -5,6 +5,6 @@ export default {
     background: '#FDFDFD',
     folders: '#7EB6FF',
     repoTitle: '#040404',
-    repoDescription: ' #D6D6D6',
+    repoDescription: '#D6D6D6',
     error: '#ff6969'
 };
