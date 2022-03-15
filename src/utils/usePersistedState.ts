@@ -1,10 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
-type Response<T> = [
-    T,
-    Dispatch<SetStateAction<T>>,
-];
+type Response<T> = [T, Dispatch<SetStateAction<T>>];
 
 function usePersistedState<T>(key: string, initialState: T): Response<T> {
     const [state, setState] = useState<T>(initialState);
@@ -21,10 +18,10 @@ function usePersistedState<T>(key: string, initialState: T): Response<T> {
         }
 
         getOlderState();
-    }, [])
+    }, []);
 
     useEffect(() => {
-        async function setNewItem(){
+        async function setNewItem() {
             await AsyncStorage.setItem(key, JSON.stringify(state));
         }
 

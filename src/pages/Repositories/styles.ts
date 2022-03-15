@@ -33,7 +33,7 @@ export const RepositoryName = styled.Text`
 export const RepositoryDescription = styled.Text`
     font-size: 12px;
     color: ${props => props.theme.repoDescription};
-    width: 90%;
+    margin-right: 30px;
 `
 
 export const ErrorText = styled.Text`

@@ -13,6 +13,7 @@ interface ThemeContextData {
 const themeContext = createContext<ThemeContextData>({} as ThemeContextData);
 
 const ThemeProvider: React.FC = ({ children }) => {
+    //Seta tema no storage, para futuras alterações e trocas de temas, como usuário selecionar tema noturno.
     const [theme, setTheme] = usePersistedState<DefaultTheme>(
         'theme',
         defaultTheme,

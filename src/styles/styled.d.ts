@@ -1,6 +1,6 @@
-import "styled-componets/native";
+import 'styled-componets/native';
 
-declare module "styled-components/native" {
+declare module 'styled-components/native' {
     export interface DefaultTheme {
         /** PRETO HEADER */ header: string;
         /** TABBAR QUASE BRANCO */ tabbar: string;

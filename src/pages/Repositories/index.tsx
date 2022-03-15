@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View, TouchableOpacity } from 'react-native';
+import { FlatList, Linking, TouchableOpacity } from 'react-native';
 import { FontAwesome, AntDesign } from '@expo/vector-icons';
 
 import GlobalContainer from '../../components/GlobalContainer';
@@ -14,7 +14,7 @@ const Repositories: React.FC<any> = ({ navigation }) => {
     const [repositories, setRepositories] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const { selectedUser } = useStorageData();
+    const { selectedUser, handleFavoriteUser, isUserFavorited } = useStorageData();
 
     const getUserRepository = async () => {
         try {
@@ -44,19 +44,20 @@ const Repositories: React.FC<any> = ({ navigation }) => {
     return (
         <GlobalContainer navigation={navigation}>
             <Styled.RepositoryHeader>
-                <Styled.HeaderText>Favoritar ?</Styled.HeaderText>
-                <TouchableOpacity>
-                    <AntDesign name="heart" size={24} color="red" />
+                <Styled.HeaderText>Favoritar {selectedUser.login}?</Styled.HeaderText>
+                <TouchableOpacity onPress={() => handleFavoriteUser(selectedUser)}>
+                    <AntDesign name="heart" size={24} color={isUserFavorited(selectedUser) ? 'red' : 'gray'} />
                 </TouchableOpacity>
             </Styled.RepositoryHeader>
             <FlatList
+                style={{width: '100%'}}
                 data={repositories}
                 ListEmptyComponent={() => (
                     <EmptyList emptyText="Usuário não possui repositório !" />
                 )}
                 renderItem={({ item }: any) => (
-                    <Styled.RepositoriesList>
-                        <FontAwesome name="folder" size={30} color="blue" />
+                    <Styled.RepositoriesList onPress={() => Linking.openURL(item.html_url)}>
+                        <FontAwesome name="folder" size={30} color="#7eb6ff" />
                         <Styled.RepositoryInfos>
                             <Styled.RepositoryName>
                                 {item.name}

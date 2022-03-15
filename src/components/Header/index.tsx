@@ -1,12 +1,14 @@
 import React from 'react';
-import { Dimensions, View } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { Dimensions } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+
 import * as Styled from './styles';
 
 const Header: React.FC = () => {
+    //Header em todas as paginas
     return (
         <Styled.HeaderContainer>
-            <AntDesign
+            <FontAwesome
                 name="github"
                 size={Dimensions.get('window').height / 5}
                 color="white"

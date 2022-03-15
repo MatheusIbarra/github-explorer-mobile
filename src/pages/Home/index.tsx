@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import {
-    View,
-    FlatList,
-    Text,
-    Image,
-    TouchableOpacity,
-    Keyboard,
-} from 'react-native';
-import { Entypo, FontAwesome } from '@expo/vector-icons';
-import * as Styled from './styles';
-import EmptyList from '../../components/EmptyList';
-import GlobalContainer from '../../components/GlobalContainer';
+import React, { useState } from 'react';
+import { Keyboard } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+
 import { User } from '../../services/classes';
+
 import Loading from '../../components/Loading';
-import { useStorageData } from '../../hooks/storageData';
+import UsersList from '../../components/UsersList';
+import GlobalContainer from '../../components/GlobalContainer';
+
+import * as Styled from './styles';
 
 const Home: React.FC<any> = ({ navigation }) => {
     const [users, setUsers] = useState<User[]>([]);
     const [search, setSearch] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const { selectUser } = useStorageData();
 
     const getUsers = async (user: string) => {
         try {
@@ -57,37 +51,15 @@ const Home: React.FC<any> = ({ navigation }) => {
                 </Styled.SearchButton>
             </Styled.SearchInputContainer>
             <Styled.ErrorText>{error}</Styled.ErrorText>
-            {users.length > 0 && (
-                <Styled.FindedUsersText style={{ marginTop: 20 }}>
-                    Usuários encontrados
-                </Styled.FindedUsersText>
-            )}
             {loading ? (
                 <Loading />
             ) : (
-                <Styled.UsersList
-                    data={users}
-                    ListEmptyComponent={() => (
-                        <EmptyList emptyText="Está meio vazio por aqui! Busque por um usuário" />
-                    )}
-                    renderItem={({ item }: any) => (
-                        <TouchableOpacity onPress={() => selectUser(item, navigation)}>
-                            <Styled.UserContainer>
-                                <Styled.UserAvatar
-                                    source={{ uri: item.avatar_url }}
-                                />
-                                <Styled.FindedUsersText>
-                                    {item.login}
-                                </Styled.FindedUsersText>
-                                <Entypo
-                                    name="chevron-right"
-                                    size={24}
-                                    color="black"
-                                />
-                            </Styled.UserContainer>
-                        </TouchableOpacity>
-                    )}
-                ></Styled.UsersList>
+                <UsersList
+                    isFavoriteList={false}
+                    headerText="Usuários encontrados"
+                    users={users}
+                    navigation={navigation}
+                />
             )}
         </GlobalContainer>
     );

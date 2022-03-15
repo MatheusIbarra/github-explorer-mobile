@@ -21,10 +21,6 @@ export const SearchInput = styled.TextInput`
     padding: 5px;
 `;
 
-export const UsersListContainer = styled.View`
-    width: 100%;
-    margin-top: 20px;
-`
 
 export const FindedUsersText = styled.Text`
     font-size: 16px;
@@ -41,21 +37,3 @@ export const ErrorText = styled.Text`
     margin-right: auto;
 `;
 
-export const UsersList = styled.FlatList`
-    margin-top: 20px;
-`
-
-export const UserContainer = styled.View`
-    margin-top: 10px;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-
-`
-
-export const UserAvatar = styled.Image`
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
-    margin-right: 30px;
-`
