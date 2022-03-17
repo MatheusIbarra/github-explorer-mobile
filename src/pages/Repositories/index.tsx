@@ -52,6 +52,7 @@ const Repositories: React.FC<any> = ({ navigation }) => {
             <FlatList
                 style={{width: '100%'}}
                 data={repositories}
+                keyExtractor={(item: any) => item.id}
                 ListEmptyComponent={() => (
                     <EmptyList emptyText="Usuário não possui repositório !" />
                 )}

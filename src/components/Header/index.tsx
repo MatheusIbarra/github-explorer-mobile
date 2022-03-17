@@ -10,7 +10,7 @@ const Header: React.FC = () => {
         <Styled.HeaderContainer>
             <FontAwesome
                 name="github"
-                size={Dimensions.get('window').height / 5}
+                size={Dimensions.get('window').width / 3}
                 color="white"
             />
         </Styled.HeaderContainer>

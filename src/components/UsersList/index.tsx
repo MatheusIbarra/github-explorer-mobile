@@ -33,6 +33,7 @@ const UsersList: React.FC<UsersListProps> = ({
             )}
             <Styled.UsersList
                 data={users}
+                keyExtractor={(item: any) => item.id}
                 ListEmptyComponent={() => (
                     <EmptyList emptyText="Está meio vazio por aqui! Busque por um usuário" />
                 )}
